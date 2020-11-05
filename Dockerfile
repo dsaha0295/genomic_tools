@@ -71,17 +71,3 @@ RUN mkdir -p /usr/local/bin/picard \
     > /usr/local/bin/picard/picard.jar
 RUN chmod 0644 /usr/local/bin/picard/picard.jar
 
-#Download deeptools 
-ARG PACKAGE_VERSION=2.5.7
-ARG DEBIAN_FRONTEND=noninteractive
-ARG BUILD_PACKAGES="zlib1g-dev libcurl4-nss-dev"
-
-
-RUN apt-get update && \
-    apt-get install --yes \
-              $BUILD_PACKAGES \
-              python-pip && \
-    pip install --upgrade pip && \
-    pip install deeptools==$PACKAGE_VERSION && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/*
